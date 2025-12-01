@@ -1462,7 +1462,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
                     _selectedTextRange = [YYTextRange rangeWithRange:newRange];
                 }
             }
-            _selectedTextRange = [self _correctedTextRange:_selectedTextRange];
+//            _selectedTextRange = [self _correctedTextRange:_selectedTextRange];
             if (notify) [_inputDelegate selectionDidChange:self];
         }
     }
@@ -1470,6 +1470,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     NSRange newRange = NSMakeRange(range.asRange.location, text.length);
     [_innerText replaceCharactersInRange:range.asRange withString:text];
     [_innerText yy_removeDiscontinuousAttributesInRange:newRange];
+    _selectedTextRange = [self _correctedTextRange:_selectedTextRange];
     if (notify) [_inputDelegate textDidChange:self];
 }
 
